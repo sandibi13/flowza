@@ -11,8 +11,7 @@
     "./components/button": "./src/components/button.tsx",
     "./components/dropdown-menu": "./src/components/dropdown-menu.tsx",
     "./lib/utils": "./src/lib/utils.ts",
-    "./styles/globals.css": "./src/styles/globals.css",
-    "./postcss.config": "./postcss.config.js"
+    "./styles/globals.css": "./src/styles/globals.css"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "2.1.15",
@@ -30,9 +29,7 @@
     "@flowza/typescript-config": "workspace:*",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@tailwindcss/postcss": "4.1.11",
     "eslint": "catalog:",
-    "postcss": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:"
   }

@@ -21,9 +21,6 @@ catalogs:
     lucide-react:
       specifier: 0.525.0
       version: 0.525.0
-    postcss:
-      specifier: 8.5.6
-      version: 8.5.6
     prettier:
       specifier: 3.6.2
       version: 3.6.2
@@ -108,6 +105,9 @@ importers:
       '@flowza/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@tailwindcss/postcss':
+        specifier: 4.1.11
+        version: 4.1.11
       '@types/node':
         specifier: 24.0.10
         version: 24.0.10
@@ -121,7 +121,7 @@ importers:
         specifier: 'catalog:'
         version: 9.30.1(jiti@2.4.2)
       postcss:
-        specifier: 'catalog:'
+        specifier: 8.5.6
         version: 8.5.6
       tailwindcss:
         specifier: 'catalog:'
@@ -166,9 +166,6 @@ importers:
       '@flowza/typescript-config':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@tailwindcss/postcss':
-        specifier: 4.1.11
-        version: 4.1.11
       '@types/react':
         specifier: 'catalog:'
         version: 19.1.8
@@ -178,9 +175,6 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 9.30.1(jiti@2.4.2)
-      postcss:
-        specifier: 'catalog:'
-        version: 8.5.6
       tailwindcss:
         specifier: 'catalog:'
         version: 4.1.11
