@@ -1,10 +1,18 @@
 packages:
   - "apps/*"
+  - "packages/*"
   - "tooling/*"
 catalog:
   {
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
     "eslint": "9.30.1",
+    "geist": "1.4.2",
+    "lucide-react": "0.525.0",
+    "postcss": "8.5.6",
     "prettier": "3.6.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "tailwindcss": "4.1.11",
     "typescript": "5.8.3",
   }

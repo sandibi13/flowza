@@ -1,7 +1,12 @@
+import { ModeToggle } from "../components/mode-toggle";
+
 export default function IndexPage() {
   return (
     <div className="flex h-screen w-screen items-center justify-center">
-      <h1 className="text-zinc-500">Flowza</h1>
+      <div className="flex flex-col items-center gap-2">
+        <h1>Flowza</h1>
+        <ModeToggle />
+      </div>
     </div>
   );
 }

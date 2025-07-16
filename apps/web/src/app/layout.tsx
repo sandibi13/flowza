@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 
-import { Geist } from "next/font/google";
+import { ThemeProvider } from "../components/theme-provider";
+import { GeistSans as geist } from "geist/font/sans";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,17 +11,21 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={geist.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
