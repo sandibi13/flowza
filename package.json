@@ -13,13 +13,18 @@
     "lint": "turbo run lint",
     "format": "prettier --check \"**/*.{ts,tsx,js,jsx,md,mdx}\"",
     "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,md,mdx}\"",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@flowza/eslint-config": "workspace:*",
     "@flowza/prettier-config": "workspace:*",
     "@flowza/typescript-config": "workspace:*",
+    "@commitlint/config-conventional": "19.8.1",
+    "@commitlint/cli": "19.8.1",
     "eslint": "catalog:",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.2",
     "prettier": "catalog:",
     "turbo": "2.5.4",
     "typescript": "catalog:"
