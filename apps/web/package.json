@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@flowza/ui": "workspace:*",
     "geist": "catalog:",
     "lucide-react": "catalog:",
     "next": "15.4.1",
@@ -22,7 +23,6 @@
   "devDependencies": {
     "@flowza/eslint-config": "workspace:*",
     "@flowza/typescript-config": "workspace:*",
-    "@flowza/ui": "workspace:*",
     "@tailwindcss/postcss": "4.1.11",
     "@types/node": "24.0.10",
     "@types/react": "catalog:",

@@ -80,6 +80,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@flowza/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       geist:
         specifier: 'catalog:'
         version: 1.4.2(next@15.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
@@ -105,9 +108,6 @@ importers:
       '@flowza/typescript-config':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@flowza/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       '@tailwindcss/postcss':
         specifier: 4.1.11
         version: 4.1.11

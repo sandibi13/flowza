@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/styles/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@flowza/ui/components",
+    "utils": "@flowza/ui/lib/utils",
+    "hooks": "@flowza/ui/hooks",
+    "lib": "@flowza/ui/lib",
+    "ui": "@flowza/ui/components"
+  }
+}
