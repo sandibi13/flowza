@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@flowza/api": "workspace:*",
     "@flowza/ui": "workspace:*",
     "geist": "catalog:",
     "lucide-react": "catalog:",
