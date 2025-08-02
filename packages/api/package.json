@@ -11,19 +11,21 @@
     "./routers/root": "./src/routers/root.ts",
     "./lib/query-client": "./src/lib/query-client.ts",
     "./lib/trpc": "./src/lib/trpc.ts",
-    "./client": "./src/client.ts",
-    "./server": "./src/server.ts"
+    "./client": "./src/client.tsx",
+    "./server": "./src/server.tsx"
   },
   "dependencies": {
+    "@flowza/auth": "workspace:*",
+    "@flowza/db": "workspace:*",
     "@flowza/env": "workspace:*",
     "@tanstack/react-query": "5.83.0",
     "@trpc/client": "11.4.3",
     "@trpc/server": "11.4.3",
     "@trpc/tanstack-react-query": "11.4.3",
-    "client-only": "0.0.1",
+    "client-only": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "server-only": "0.0.1",
+    "server-only": "catalog:",
     "superjson": "2.2.2",
     "zod": "catalog:"
   },
