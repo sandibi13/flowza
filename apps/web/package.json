@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@flowza/api": "workspace:*",
+    "@flowza/auth": "workspace:*",
+    "@flowza/db": "workspace:*",
+    "@flowza/env": "workspace:*",
     "@flowza/ui": "workspace:*",
     "geist": "catalog:",
     "lucide-react": "catalog:",
