@@ -4,6 +4,7 @@ packages:
   - "tooling/*"
 catalog:
   {
+    "@tanstack/react-query": "5.83.0",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "client-only": "0.0.1",

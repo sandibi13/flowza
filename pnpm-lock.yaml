@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    '@tanstack/react-query':
+      specifier: 5.83.0
+      version: 5.83.0
     '@types/react':
       specifier: 19.1.8
       version: 19.1.8
@@ -163,7 +166,7 @@ importers:
         specifier: workspace:*
         version: link:../env
       '@tanstack/react-query':
-        specifier: 5.83.0
+        specifier: 'catalog:'
         version: 5.83.0(react@19.1.0)
       '@trpc/client':
         specifier: 11.4.3
@@ -276,12 +279,6 @@ importers:
       '@t3-oss/env-core':
         specifier: 0.13.8
         version: 0.13.8(typescript@5.8.3)(zod@4.0.10)
-      client-only:
-        specifier: 'catalog:'
-        version: 0.0.1
-      server-only:
-        specifier: 'catalog:'
-        version: 0.0.1
       zod:
         specifier: 'catalog:'
         version: 4.0.10

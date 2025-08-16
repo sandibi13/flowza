@@ -18,7 +18,7 @@
     "@flowza/auth": "workspace:*",
     "@flowza/db": "workspace:*",
     "@flowza/env": "workspace:*",
-    "@tanstack/react-query": "5.83.0",
+    "@tanstack/react-query": "catalog:",
     "@trpc/client": "11.4.3",
     "@trpc/server": "11.4.3",
     "@trpc/tanstack-react-query": "11.4.3",

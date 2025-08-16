@@ -1,1 +1,5 @@
-export { user, session, account, verification } from "./auth";
+export { account } from "./account";
+export { session } from "./session";
+export { user } from "./user";
+export { verification } from "./verification";
+export { waitlist } from "./waitlist";
