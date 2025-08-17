@@ -11,6 +11,7 @@
   "exports": {
     "./components/button": "./src/components/button.tsx",
     "./components/dropdown-menu": "./src/components/dropdown-menu.tsx",
+    "./components/input": "./src/components/input.tsx",
     "./lib/utils": "./src/lib/utils.ts",
     "./styles/globals.css": "./src/styles/globals.css"
   },
