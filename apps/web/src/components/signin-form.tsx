@@ -9,12 +9,10 @@ export function SignInForm() {
   const [loading, setLoading] = useState(false);
 
   const signInWithDiscord = async () => {
-    await authClient.signIn.social(
-      {
-        provider: "discord",
-        callbackURL: "/dashboard",
-      },
-      {
+    await authClient.signIn.social({
+      provider: "discord",
+      callbackURL: "/dashboard",
+      fetchOptions: {
         onRequest: () => {
           setLoading(true);
         },
@@ -22,7 +20,7 @@ export function SignInForm() {
           setLoading(false);
         },
       },
-    );
+    });
   };
 
   return (
