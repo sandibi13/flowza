@@ -1,7 +1,6 @@
 import "../styles/globals.css";
 
 import { GeistSans as geist } from "geist/font/sans";
-import { Providers } from "../lib/providers";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,9 +15,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={geist.className}>
-        <Providers>{children}</Providers>
-      </body>
+      <body className={geist.className}>{children}</body>
     </html>
   );
 }

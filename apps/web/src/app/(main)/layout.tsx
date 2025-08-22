@@ -1,3 +1,6 @@
+import { SidebarInset } from "@flowza/ui/components/sidebar";
+import { AppSidebar } from "../../components/app-sidebar";
+import { Providers } from "../../lib/providers";
 import { auth } from "@flowza/auth/server";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
@@ -15,5 +18,12 @@ export default async function MainLayout({
     redirect("/signin");
   }
 
-  return <div>{children}</div>;
+  return (
+    <Providers>
+      <AppSidebar />
+      <SidebarInset className="flex items-center justify-center">
+        {children}
+      </SidebarInset>
+    </Providers>
+  );
 }
