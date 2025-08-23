@@ -34,24 +34,23 @@ import { glass } from "@dicebear/collection";
 import { redirect } from "next/navigation";
 import { useMemo } from "react";
 
-export function UserAccount({
-  user,
-}: {
-  user: { name: string; email: string; image?: string | null };
-}) {
+export function UserAccount() {
+  const { data } = authClient.useSession();
+  const user = data?.user;
+
   const { isMobile } = useSidebar();
 
   const dicebearSvg = useMemo(() => {
     return createAvatar(glass, {
-      seed: user.name,
+      seed: user?.name,
     }).toDataUri();
-  }, [user.name]);
+  }, [user?.name]);
 
   const signOut = async () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          redirect("/signin");
+          redirect("/");
         },
       },
     });
@@ -67,14 +66,17 @@ export function UserAccount({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.image || dicebearSvg} alt={user.name} />
+                <AvatarImage
+                  src={user?.image || dicebearSvg}
+                  alt={user?.name}
+                />
                 <AvatarFallback className="rounded-lg">
-                  {user.name.slice(0, 2).toUpperCase()}
+                  {user?.name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium">{user?.name}</span>
+                <span className="truncate text-xs">{user?.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -89,16 +91,16 @@ export function UserAccount({
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage
-                    src={user.image || dicebearSvg}
-                    alt={user.name}
+                    src={user?.image || dicebearSvg}
+                    alt={user?.name}
                   />
                   <AvatarFallback className="rounded-lg">
-                    {user.name.slice(0, 2).toUpperCase()}
+                    {user?.name.slice(0, 2).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-medium">{user?.name}</span>
+                  <span className="truncate text-xs">{user?.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>

@@ -1,29 +1,21 @@
-"use client";
-
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
 } from "@flowza/ui/components/sidebar";
-import { authClient } from "@flowza/auth/client";
 import { UserAccount } from "./user-account";
+import { Navigation } from "./navigation";
 
 export function AppSidebar() {
-  const { data } = authClient.useSession();
-
-  if (!data) {
-    return "No data found";
-  }
-
-  const user = data.user;
-
   return (
     <Sidebar variant="inset">
       <SidebarHeader />
-      <SidebarContent />
+      <SidebarContent>
+        <Navigation />
+      </SidebarContent>
       <SidebarFooter>
-        <UserAccount user={user} />
+        <UserAccount />
       </SidebarFooter>
     </Sidebar>
   );

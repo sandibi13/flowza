@@ -16,5 +16,10 @@ export const auth = betterAuth({
       clientSecret: env.DISCORD_CLIENT_SECRET,
     },
   },
+  session: {
+    cookieCache: {
+      enabled: true,
+    },
+  },
   plugins: [nextCookies()],
 });
