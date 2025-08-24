@@ -7,22 +7,27 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@flowza/ui/components/dropdown-menu";
+import {
+  ChevronsUpDown,
+  CircleArrowUp,
+  LogOut,
+  Monitor,
+  Moon,
+  SlidersHorizontal,
+  Sun,
+  User,
+} from "lucide-react";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from "@flowza/ui/components/sidebar";
-import {
-  ChevronsUpDown,
-  CircleArrowUp,
-  LogOut,
-  Monitor,
-  SlidersHorizontal,
-  User,
-} from "lucide-react";
 import {
   Avatar,
   AvatarFallback,
@@ -32,6 +37,7 @@ import { authClient } from "@flowza/auth/client";
 import { createAvatar } from "@dicebear/core";
 import { glass } from "@dicebear/collection";
 import { redirect } from "next/navigation";
+import { useTheme } from "next-themes";
 import { useMemo } from "react";
 
 export function UserAccount() {
@@ -39,6 +45,8 @@ export function UserAccount() {
   const user = data?.user;
 
   const { isMobile } = useSidebar();
+
+  const { setTheme } = useTheme();
 
   const dicebearSvg = useMemo(() => {
     return createAvatar(glass, {
@@ -114,10 +122,26 @@ export function UserAccount() {
                 <SlidersHorizontal />
                 Preferences
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Monitor />
-                Appearance
-              </DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <Monitor className="text-muted-foreground mr-2 h-4 w-4" />
+                  Appearance
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem onClick={() => setTheme("system")}>
+                    <Monitor />
+                    System
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("light")}>
+                    <Sun />
+                    Light
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("dark")}>
+                    <Moon />
+                    Dark
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
