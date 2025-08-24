@@ -4,24 +4,10 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@flowza/ui/components/dropdown-menu";
-import {
-  ChevronsUpDown,
-  CircleArrowUp,
-  LogOut,
-  Monitor,
-  Moon,
-  SlidersHorizontal,
-  Sun,
-  User,
-} from "lucide-react";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -33,12 +19,15 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@flowza/ui/components/avatar";
+import { UpgradeplanDialog } from "./upgradeplan-dialog";
+import { PreferencesDialog } from "./preferences-dialog";
 import { authClient } from "@flowza/auth/client";
+import { ProfileDialog } from "./profile-dialog";
 import { createAvatar } from "@dicebear/core";
+import { ChevronsUpDown } from "lucide-react";
 import { glass } from "@dicebear/collection";
-import { redirect } from "next/navigation";
-import { useTheme } from "next-themes";
-import { useMemo } from "react";
+import { ThemeToggle } from "./theme-toggle";
+import { Signout } from "./signout";
 
 export function UserAccount() {
   const { data } = authClient.useSession();
@@ -46,23 +35,9 @@ export function UserAccount() {
 
   const { isMobile } = useSidebar();
 
-  const { setTheme } = useTheme();
-
-  const dicebearSvg = useMemo(() => {
-    return createAvatar(glass, {
-      seed: user?.name,
-    }).toDataUri();
-  }, [user?.name]);
-
-  const signOut = async () => {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          redirect("/");
-        },
-      },
-    });
-  };
+  const dicebearSvg = createAvatar(glass, {
+    seed: user?.name,
+  }).toDataUri();
 
   return (
     <SidebarMenu>
@@ -114,45 +89,14 @@ export function UserAccount() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <User />
-                Profile
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <SlidersHorizontal />
-                Preferences
-              </DropdownMenuItem>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>
-                  <Monitor className="text-muted-foreground mr-2 h-4 w-4" />
-                  Appearance
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent>
-                  <DropdownMenuItem onClick={() => setTheme("system")}>
-                    <Monitor />
-                    System
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme("light")}>
-                    <Sun />
-                    Light
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme("dark")}>
-                    <Moon />
-                    Dark
-                  </DropdownMenuItem>
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
+              <ProfileDialog />
+              <PreferencesDialog />
+              <ThemeToggle />
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <CircleArrowUp />
-              Upgrade plan
-            </DropdownMenuItem>
+            <UpgradeplanDialog />
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={signOut}>
-              <LogOut />
-              Signout
-            </DropdownMenuItem>
+            <Signout />
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
