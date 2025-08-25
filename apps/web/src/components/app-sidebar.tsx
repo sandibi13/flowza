@@ -7,7 +7,9 @@ import {
 import { UserAccount } from "./user-account";
 import { Navigation } from "./navigation";
 
-export function AppSidebar() {
+export function AppSidebar({ session }: { session: any }) {
+  const user = session.user;
+
   return (
     <Sidebar variant="inset">
       <SidebarHeader />
@@ -15,7 +17,7 @@ export function AppSidebar() {
         <Navigation />
       </SidebarContent>
       <SidebarFooter>
-        <UserAccount />
+        <UserAccount user={user} />
       </SidebarFooter>
     </Sidebar>
   );

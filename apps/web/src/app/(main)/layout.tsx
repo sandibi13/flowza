@@ -20,7 +20,7 @@ export default async function MainLayout({
 
   return (
     <Providers>
-      <AppSidebar />
+      <AppSidebar session={session} />
       <SidebarInset className="flex items-center justify-center">
         {children}
       </SidebarInset>
