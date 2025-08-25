@@ -5,7 +5,7 @@ import { Input } from "@flowza/ui/components/input";
 import { authClient } from "@flowza/auth/client";
 import { useState } from "react";
 
-export function SignInForm() {
+export function SigninForm() {
   const [loading, setLoading] = useState(false);
 
   const signInWithDiscord = async () => {

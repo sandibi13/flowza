@@ -1,7 +1,7 @@
-import { SignInForm } from "../../../components/signin-form";
+import { SigninForm } from "../../../components/signin-form";
 import Link from "next/link";
 
-export default function SignInPage() {
+export default function SigninPage() {
   return (
     <div className="flex flex-1 items-center justify-center">
       <div className="w-full max-w-xs">
@@ -12,7 +12,7 @@ export default function SignInPage() {
               Enter your email below to signin to your account
             </p>
           </div>
-          <SignInForm />
+          <SigninForm />
           <div className="text-center text-sm">
             Don&apos;t have an account?{" "}
             <Link href="/signup" className="underline underline-offset-4">
