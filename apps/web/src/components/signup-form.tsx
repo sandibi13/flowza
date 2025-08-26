@@ -11,7 +11,7 @@ export function SignupForm() {
   const signUpWithDiscord = async () => {
     await authClient.signIn.social({
       provider: "discord",
-      callbackURL: "/dashboard",
+      callbackURL: "/home",
       fetchOptions: {
         onRequest: () => {
           setLoading(true);

@@ -10,6 +10,6 @@ export default async function NotFound() {
   if (!session) {
     redirect("/");
   } else {
-    redirect("/dashboard");
+    redirect("/home");
   }
 }

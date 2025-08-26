@@ -11,9 +11,9 @@ export function Navigation() {
     <SidebarMenu>
       <SidebarMenuItem>
         <SidebarMenuButton asChild>
-          <Link href="/dashboard">
+          <Link href="/home">
             <Home />
-            Dashboard
+            Home
           </Link>
         </SidebarMenuButton>
       </SidebarMenuItem>
