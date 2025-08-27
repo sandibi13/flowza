@@ -9,8 +9,8 @@
       "env": [
         "BETTER_AUTH_SECRET",
         "DATABASE_URL",
-        "DISCORD_CLIENT_ID",
-        "DISCORD_CLIENT_SECRET",
+        "GOOGLE_CLIENT_ID",
+        "GOOGLE_CLIENT_SECRET",
         "NEXT_PUBLIC_BETTER_AUTH_URL",
         "NEXT_PUBLIC_VERCEL_URL",
         "NEXT_PUBLIC_CLIENT_NODE_ENV",
@@ -23,8 +23,8 @@
       "env": [
         "BETTER_AUTH_SECRET",
         "DATABASE_URL",
-        "DISCORD_CLIENT_ID",
-        "DISCORD_CLIENT_SECRET",
+        "GOOGLE_CLIENT_ID",
+        "GOOGLE_CLIENT_SECRET",
         "NEXT_PUBLIC_BETTER_AUTH_URL",
         "NEXT_PUBLIC_VERCEL_URL",
         "NEXT_PUBLIC_CLIENT_NODE_ENV",

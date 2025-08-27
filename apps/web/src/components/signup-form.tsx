@@ -8,9 +8,9 @@ import { useState } from "react";
 export function SignupForm() {
   const [loading, setLoading] = useState(false);
 
-  const signUpWithDiscord = async () => {
+  const signUpWithGoogle = async () => {
     await authClient.signIn.social({
-      provider: "discord",
+      provider: "google",
       callbackURL: "/home",
       fetchOptions: {
         onRequest: () => {
@@ -42,10 +42,10 @@ export function SignupForm() {
         type="button"
         variant="outline"
         className="w-full"
-        onClick={signUpWithDiscord}
+        onClick={signUpWithGoogle}
         disabled={loading}
       >
-        Signup with Discord
+        Signup with Google
       </Button>
     </form>
   );
