@@ -7,24 +7,16 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@flowza/ui/components/dialog";
-import { DropdownMenuItem } from "@flowza/ui/components/dropdown-menu";
-import { User } from "lucide-react";
-import { useState } from "react";
 
-export function ProfileDialog() {
-  const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
+interface ProfileDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
 
+export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
   return (
-    <Dialog open={isProfileDialogOpen} onOpenChange={setIsProfileDialogOpen}>
-      <DialogTrigger asChild>
-        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          <User />
-          Profile
-        </DropdownMenuItem>
-      </DialogTrigger>
-
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Profile</DialogTitle>

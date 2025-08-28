@@ -11,6 +11,7 @@
   "exports": {
     "./components/avatar": "./src/components/avatar.tsx",
     "./components/button": "./src/components/button.tsx",
+    "./components/command": "./src/components/command.tsx",
     "./components/dialog": "./src/components/dialog.tsx",
     "./components/dropdown-menu": "./src/components/dropdown-menu.tsx",
     "./components/input": "./src/components/input.tsx",
@@ -32,6 +33,7 @@
     "@radix-ui/react-tooltip": "1.2.8",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
+    "cmdk": "1.1.1",
     "lucide-react": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",

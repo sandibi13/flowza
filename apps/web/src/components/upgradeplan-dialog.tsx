@@ -7,27 +7,19 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@flowza/ui/components/dialog";
-import { DropdownMenuItem } from "@flowza/ui/components/dropdown-menu";
-import { CircleArrowUp } from "lucide-react";
-import { useState } from "react";
 
-export function UpgradeplanDialog() {
-  const [isUpgradeplanDialogOpen, setIsUpgradeplanDialogOpen] = useState(false);
+interface UpgradeplanDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
 
+export function UpgradeplanDialog({
+  open,
+  onOpenChange,
+}: UpgradeplanDialogProps) {
   return (
-    <Dialog
-      open={isUpgradeplanDialogOpen}
-      onOpenChange={setIsUpgradeplanDialogOpen}
-    >
-      <DialogTrigger asChild>
-        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          <CircleArrowUp />
-          Upgrade plan
-        </DropdownMenuItem>
-      </DialogTrigger>
-
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Manage your plan</DialogTitle>

@@ -4,6 +4,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
+  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -15,6 +16,12 @@ import {
   useSidebar,
 } from "@flowza/ui/components/sidebar";
 import {
+  ChevronsUpDown,
+  CircleArrowUp,
+  SlidersHorizontal,
+  User,
+} from "lucide-react";
+import {
   Avatar,
   AvatarFallback,
   AvatarImage,
@@ -23,22 +30,42 @@ import { UpgradeplanDialog } from "./upgradeplan-dialog";
 import { PreferencesDialog } from "./preferences-dialog";
 import { ProfileDialog } from "./profile-dialog";
 import { createAvatar } from "@dicebear/core";
-import { ChevronsUpDown } from "lucide-react";
 import { glass } from "@dicebear/collection";
 import { ThemeToggle } from "./theme-toggle";
 import { Signout } from "./signout";
+import { useState } from "react";
 
 export function UserAccount({ user }: { user: any }) {
   const { isMobile } = useSidebar();
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
+  const [isPreferencesDialogOpen, setIsPreferencesDialogOpen] = useState(false);
+  const [isUpgradeplanDialogOpen, setIsUpgradeplanDialogOpen] = useState(false);
 
   const dicebearSvg = createAvatar(glass, {
     seed: user.name,
   }).toDataUri();
 
+  const handleProfileClick = () => {
+    setIsDropdownOpen(false);
+    setTimeout(() => setIsProfileDialogOpen(true), 100);
+  };
+
+  const handlePreferencesClick = () => {
+    setIsDropdownOpen(false);
+    setTimeout(() => setIsPreferencesDialogOpen(true), 100);
+  };
+
+  const handleUpgradeplanClick = () => {
+    setIsDropdownOpen(false);
+    setTimeout(() => setIsUpgradeplanDialogOpen(true), 100);
+  };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
+        <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
@@ -82,16 +109,37 @@ export function UserAccount({ user }: { user: any }) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <ProfileDialog />
-              <PreferencesDialog />
+              <DropdownMenuItem onClick={handleProfileClick}>
+                <User />
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handlePreferencesClick}>
+                <SlidersHorizontal />
+                Preferences
+              </DropdownMenuItem>
               <ThemeToggle />
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <UpgradeplanDialog />
+            <DropdownMenuItem onClick={handleUpgradeplanClick}>
+              <CircleArrowUp />
+              Upgrade plan
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <Signout />
           </DropdownMenuContent>
         </DropdownMenu>
+        <ProfileDialog
+          open={isProfileDialogOpen}
+          onOpenChange={setIsProfileDialogOpen}
+        />
+        <PreferencesDialog
+          open={isPreferencesDialogOpen}
+          onOpenChange={setIsPreferencesDialogOpen}
+        />
+        <UpgradeplanDialog
+          open={isUpgradeplanDialogOpen}
+          onOpenChange={setIsUpgradeplanDialogOpen}
+        />
       </SidebarMenuItem>
     </SidebarMenu>
   );

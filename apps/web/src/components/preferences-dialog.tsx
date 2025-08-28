@@ -7,27 +7,19 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@flowza/ui/components/dialog";
-import { DropdownMenuItem } from "@flowza/ui/components/dropdown-menu";
-import { SlidersHorizontal } from "lucide-react";
-import { useState } from "react";
 
-export function PreferencesDialog() {
-  const [isPreferencesDialogOpen, setIsPreferencesDialogOpen] = useState(false);
+interface PreferencesDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
 
+export function PreferencesDialog({
+  open,
+  onOpenChange,
+}: PreferencesDialogProps) {
   return (
-    <Dialog
-      open={isPreferencesDialogOpen}
-      onOpenChange={setIsPreferencesDialogOpen}
-    >
-      <DialogTrigger asChild>
-        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          <SlidersHorizontal />
-          Preferences
-        </DropdownMenuItem>
-      </DialogTrigger>
-
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Preferences</DialogTitle>
