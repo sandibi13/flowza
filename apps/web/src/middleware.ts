@@ -1,10 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
 
-export async function middleware(request: NextRequest) {
+const publicRoutes = ["/", "/signup", "/signin"];
+const protectedRoutes = ["/home", "/integrations", "/templates"];
+
+export default async function middleware(request: NextRequest) {
+  const path = request.nextUrl.pathname;
+
+  const isPublicRoute = publicRoutes.includes(path);
+  const isProtectedRoute = protectedRoutes.includes(path);
+
   const sessionCookie = getSessionCookie(request);
 
-  if (!sessionCookie) {
+  if (isPublicRoute && sessionCookie) {
+    return NextResponse.redirect(new URL("/home", request.url));
+  }
+
+  if (isProtectedRoute && !sessionCookie) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
 
@@ -12,5 +24,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/home", "/integrations", "/templates"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

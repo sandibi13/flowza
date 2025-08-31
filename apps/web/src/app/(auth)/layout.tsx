@@ -1,23 +1,12 @@
-import { auth } from "@flowza/auth/server";
-import { redirect } from "next/navigation";
-import { headers } from "next/headers";
 import { Tornado } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function AuthLayout({
+export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (session) {
-    redirect("/home");
-  }
-
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">

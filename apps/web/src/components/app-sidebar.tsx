@@ -8,13 +8,17 @@ import { WorkspaceSwitcher } from "./workspace-switcher";
 import { UserAccount } from "./user-account";
 import { Navigation } from "./navigation";
 
-export function AppSidebar({ session }: { session: any }) {
-  const user = session.user;
-
+export function AppSidebar() {
   const workspace = {
     name: "Analog",
     image: "https://github.com/analogdotnow.png",
     plan: "Free",
+  };
+
+  const user = {
+    name: "Sandipan Biswas",
+    image: "https://github.com/sandibi13.png",
+    email: "sandipanb680@gmail.com",
   };
 
   return (
