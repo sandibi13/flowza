@@ -1,6 +1,7 @@
 import "server-only";
 
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { organization } from "better-auth/plugins";
 import { nextCookies } from "better-auth/next-js";
 import { env } from "@flowza/env/server";
 import { betterAuth } from "better-auth";
@@ -21,5 +22,5 @@ export const auth = betterAuth({
       enabled: true,
     },
   },
-  plugins: [nextCookies()],
+  plugins: [organization(), nextCookies()],
 });

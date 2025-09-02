@@ -26,20 +26,45 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@flowza/ui/components/avatar";
+import { WorkspaceSettingsDialog } from "./workspace-settings-dialog";
+import { WorkspaceInviteDialog } from "./workspace-invite-dialog";
+import { WorkspaceCreateDialog } from "./workspace-create-dialog";
 import { createAvatar } from "@dicebear/core";
 import { glass } from "@dicebear/collection";
+import { useState } from "react";
 
 export function WorkspaceSwitcher({ workspace }: { workspace: any }) {
   const { isMobile } = useSidebar();
 
-  const dicebearSvg = createAvatar(glass, {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isWorkspaceCreateDialogOpen, setIsWorkspaceCreateDialogOpen] =
+    useState(false);
+  const [isWorkspaceInviteDialogOpen, setIsWorkspaceInviteDialogOpen] =
+    useState(false);
+  const [isWorkspaceSettingsDialogOpen, setIsWorkspaceSettingsDialogOpen] =
+    useState(false);
+
+  const dicebear = createAvatar(glass, {
     seed: workspace.name,
   }).toDataUri();
+
+  const handleWorkspaceCreateClick = () => {
+    setIsDropdownOpen(false);
+    setTimeout(() => setIsWorkspaceCreateDialogOpen(true), 100);
+  };
+  const handleWorkspaceInviteClick = () => {
+    setIsDropdownOpen(false);
+    setTimeout(() => setIsWorkspaceInviteDialogOpen(true), 100);
+  };
+  const handleWorkspaceSettingsClick = () => {
+    setIsDropdownOpen(false);
+    setTimeout(() => setIsWorkspaceSettingsDialogOpen(true), 100);
+  };
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
+        <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
@@ -47,7 +72,7 @@ export function WorkspaceSwitcher({ workspace }: { workspace: any }) {
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage
-                  src={workspace.image || dicebearSvg}
+                  src={workspace.image || dicebear}
                   alt={workspace.name}
                 />
                 <AvatarFallback className="rounded-lg">
@@ -67,17 +92,17 @@ export function WorkspaceSwitcher({ workspace }: { workspace: any }) {
             align="start"
             sideOffset={4}
           >
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleWorkspaceCreateClick}>
               <Plus />
               New workspace
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleWorkspaceInviteClick}>
                 <UserPlus />
                 Invite members
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleWorkspaceSettingsClick}>
                 <Briefcase />
                 Workspace settings
               </DropdownMenuItem>
@@ -89,6 +114,18 @@ export function WorkspaceSwitcher({ workspace }: { workspace: any }) {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        <WorkspaceCreateDialog
+          open={isWorkspaceCreateDialogOpen}
+          onOpenChange={setIsWorkspaceCreateDialogOpen}
+        />
+        <WorkspaceInviteDialog
+          open={isWorkspaceInviteDialogOpen}
+          onOpenChange={setIsWorkspaceInviteDialogOpen}
+        />
+        <WorkspaceSettingsDialog
+          open={isWorkspaceSettingsDialogOpen}
+          onOpenChange={setIsWorkspaceSettingsDialogOpen}
+        />
       </SidebarMenuItem>
     </SidebarMenu>
   );

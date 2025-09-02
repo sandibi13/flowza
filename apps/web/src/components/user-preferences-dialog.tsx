@@ -9,20 +9,20 @@ import {
   DialogTitle,
 } from "@flowza/ui/components/dialog";
 
-interface UpgradeplanDialogProps {
+interface UserPreferencesDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-export function UpgradeplanDialog({
+export function UserPreferencesDialog({
   open,
   onOpenChange,
-}: UpgradeplanDialogProps) {
+}: UserPreferencesDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Manage your plan</DialogTitle>
+          <DialogTitle>Preferences</DialogTitle>
         </DialogHeader>
         <DialogFooter>
           <DialogClose>Close</DialogClose>

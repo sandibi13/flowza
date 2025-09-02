@@ -9,17 +9,20 @@ import {
   DialogTitle,
 } from "@flowza/ui/components/dialog";
 
-interface ProfileDialogProps {
+interface BillingUpgradeDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
+export function BillingUpgradeDialog({
+  open,
+  onOpenChange,
+}: BillingUpgradeDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Profile</DialogTitle>
+          <DialogTitle>Manage your plan</DialogTitle>
         </DialogHeader>
         <DialogFooter>
           <DialogClose>Close</DialogClose>

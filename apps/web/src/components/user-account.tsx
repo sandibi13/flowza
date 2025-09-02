@@ -26,40 +26,40 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@flowza/ui/components/avatar";
-import { UpgradeplanDialog } from "./upgradeplan-dialog";
-import { PreferencesDialog } from "./preferences-dialog";
-import { ProfileDialog } from "./profile-dialog";
+import { UserPreferencesDialog } from "./user-preferences-dialog";
+import { BillingUpgradeDialog } from "./billing-upgrade-dialog";
+import { UserProfileDialog } from "./user-profile-dialog";
+import { SignoutButton } from "./signout-button";
 import { createAvatar } from "@dicebear/core";
 import { glass } from "@dicebear/collection";
 import { ThemeToggle } from "./theme-toggle";
-import { Signout } from "./signout";
 import { useState } from "react";
 
 export function UserAccount({ user }: { user: any }) {
   const { isMobile } = useSidebar();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
-  const [isPreferencesDialogOpen, setIsPreferencesDialogOpen] = useState(false);
-  const [isUpgradeplanDialogOpen, setIsUpgradeplanDialogOpen] = useState(false);
+  const [isUserProfileDialogOpen, setIsUserProfileDialogOpen] = useState(false);
+  const [isUserPreferencesDialogOpen, setIsUserPreferencesDialogOpen] =
+    useState(false);
+  const [isBillingUpgradeDialogOpen, setIsBillingUpgradeDialogOpen] =
+    useState(false);
 
-  const dicebearSvg = createAvatar(glass, {
+  const dicebear = createAvatar(glass, {
     seed: user.name,
   }).toDataUri();
 
-  const handleProfileClick = () => {
+  const handleUserProfileClick = () => {
     setIsDropdownOpen(false);
-    setTimeout(() => setIsProfileDialogOpen(true), 100);
+    setTimeout(() => setIsUserProfileDialogOpen(true), 100);
   };
-
-  const handlePreferencesClick = () => {
+  const handleUserPreferencesClick = () => {
     setIsDropdownOpen(false);
-    setTimeout(() => setIsPreferencesDialogOpen(true), 100);
+    setTimeout(() => setIsUserPreferencesDialogOpen(true), 100);
   };
-
-  const handleUpgradeplanClick = () => {
+  const handleBillingUpgradeClick = () => {
     setIsDropdownOpen(false);
-    setTimeout(() => setIsUpgradeplanDialogOpen(true), 100);
+    setTimeout(() => setIsBillingUpgradeDialogOpen(true), 100);
   };
 
   return (
@@ -72,7 +72,7 @@ export function UserAccount({ user }: { user: any }) {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.image || dicebearSvg} alt={user.name} />
+                <AvatarImage src={user.image || dicebear} alt={user.name} />
                 <AvatarFallback className="rounded-lg">
                   {user.name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
@@ -93,10 +93,7 @@ export function UserAccount({ user }: { user: any }) {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage
-                    src={user.image || dicebearSvg}
-                    alt={user.name}
-                  />
+                  <AvatarImage src={user.image || dicebear} alt={user.name} />
                   <AvatarFallback className="rounded-lg">
                     {user.name.slice(0, 2).toUpperCase()}
                   </AvatarFallback>
@@ -109,36 +106,36 @@ export function UserAccount({ user }: { user: any }) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={handleProfileClick}>
+              <DropdownMenuItem onClick={handleUserProfileClick}>
                 <User />
                 Profile
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={handlePreferencesClick}>
+              <DropdownMenuItem onClick={handleUserPreferencesClick}>
                 <SlidersHorizontal />
                 Preferences
               </DropdownMenuItem>
               <ThemeToggle />
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleUpgradeplanClick}>
+            <DropdownMenuItem onClick={handleBillingUpgradeClick}>
               <CircleArrowUp />
               Upgrade plan
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <Signout />
+            <SignoutButton />
           </DropdownMenuContent>
         </DropdownMenu>
-        <ProfileDialog
-          open={isProfileDialogOpen}
-          onOpenChange={setIsProfileDialogOpen}
+        <UserProfileDialog
+          open={isUserProfileDialogOpen}
+          onOpenChange={setIsUserProfileDialogOpen}
         />
-        <PreferencesDialog
-          open={isPreferencesDialogOpen}
-          onOpenChange={setIsPreferencesDialogOpen}
+        <UserPreferencesDialog
+          open={isUserPreferencesDialogOpen}
+          onOpenChange={setIsUserPreferencesDialogOpen}
         />
-        <UpgradeplanDialog
-          open={isUpgradeplanDialogOpen}
-          onOpenChange={setIsUpgradeplanDialogOpen}
+        <BillingUpgradeDialog
+          open={isBillingUpgradeDialogOpen}
+          onOpenChange={setIsBillingUpgradeDialogOpen}
         />
       </SidebarMenuItem>
     </SidebarMenu>

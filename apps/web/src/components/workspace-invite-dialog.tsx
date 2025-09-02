@@ -9,20 +9,20 @@ import {
   DialogTitle,
 } from "@flowza/ui/components/dialog";
 
-interface PreferencesDialogProps {
+interface WorkspaceInviteDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-export function PreferencesDialog({
+export function WorkspaceInviteDialog({
   open,
   onOpenChange,
-}: PreferencesDialogProps) {
+}: WorkspaceInviteDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Preferences</DialogTitle>
+          <DialogTitle>Invite members</DialogTitle>
         </DialogHeader>
         <DialogFooter>
           <DialogClose>Close</DialogClose>
