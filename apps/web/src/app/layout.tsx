@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 
+import { Toaster } from "@flowza/ui/components/sonner";
 import { GeistSans as geist } from "geist/font/sans";
 import { cn } from "@flowza/ui/lib/utils";
 import type { Metadata } from "next";
@@ -16,7 +17,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(geist.className, "overscroll-none")}>{children}</body>
+      <body className={cn(geist.className, "overscroll-none")}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
