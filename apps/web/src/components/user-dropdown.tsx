@@ -5,7 +5,6 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@flowza/ui/components/dropdown-menu";
@@ -20,6 +19,7 @@ import {
   CircleArrowUp,
   SlidersHorizontal,
   User,
+  Users,
 } from "lucide-react";
 import {
   Avatar,
@@ -30,12 +30,10 @@ import { UserPreferencesDialog } from "./user-preferences-dialog";
 import { BillingUpgradeDialog } from "./billing-upgrade-dialog";
 import { UserProfileDialog } from "./user-profile-dialog";
 import { SignoutButton } from "./signout-button";
-import { createAvatar } from "@dicebear/core";
-import { glass } from "@dicebear/collection";
 import { ThemeToggle } from "./theme-toggle";
 import { useState } from "react";
 
-export function UserAccount({ user }: { user: any }) {
+export function UserDropdown({ currentUser }: { currentUser: any }) {
   const { isMobile } = useSidebar();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -44,10 +42,6 @@ export function UserAccount({ user }: { user: any }) {
     useState(false);
   const [isBillingUpgradeDialogOpen, setIsBillingUpgradeDialogOpen] =
     useState(false);
-
-  const dicebear = createAvatar(glass, {
-    seed: user.name,
-  }).toDataUri();
 
   const handleUserProfileClick = () => {
     setIsDropdownOpen(false);
@@ -72,14 +66,14 @@ export function UserAccount({ user }: { user: any }) {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.image || dicebear} alt={user.name} />
+                <AvatarImage src={currentUser.image} alt={currentUser.name} />
                 <AvatarFallback className="rounded-lg">
-                  {user.name.slice(0, 2).toUpperCase()}
+                  {currentUser.displayUsername.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium">{currentUser.name}</span>
+                <span className="truncate text-xs">{currentUser.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -90,21 +84,6 @@ export function UserAccount({ user }: { user: any }) {
             align="end"
             sideOffset={4}
           >
-            <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.image || dicebear} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">
-                    {user.name.slice(0, 2).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
-                </div>
-              </div>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={handleUserProfileClick}>
                 <User />
@@ -116,6 +95,11 @@ export function UserAccount({ user }: { user: any }) {
               </DropdownMenuItem>
               <ThemeToggle />
             </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Users />
+              Switch Account
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleBillingUpgradeClick}>
               <CircleArrowUp />

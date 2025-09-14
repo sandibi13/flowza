@@ -15,9 +15,10 @@ import {
   useSidebar,
 } from "@flowza/ui/components/sidebar";
 import {
-  Briefcase,
   ChevronsUpDown,
-  Plus,
+  PlusCircle,
+  Settings,
+  Shuffle,
   Trash2,
   UserPlus,
 } from "lucide-react";
@@ -29,11 +30,13 @@ import {
 import { WorkspaceSettingsDialog } from "./workspace-settings-dialog";
 import { WorkspaceInviteDialog } from "./workspace-invite-dialog";
 import { WorkspaceCreateDialog } from "./workspace-create-dialog";
-import { createAvatar } from "@dicebear/core";
-import { glass } from "@dicebear/collection";
 import { useState } from "react";
 
-export function WorkspaceSwitcher({ workspace }: { workspace: any }) {
+export function WorkspaceDropdown({
+  currentWorkspace,
+}: {
+  currentWorkspace: any;
+}) {
   const { isMobile } = useSidebar();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -43,10 +46,6 @@ export function WorkspaceSwitcher({ workspace }: { workspace: any }) {
     useState(false);
   const [isWorkspaceSettingsDialogOpen, setIsWorkspaceSettingsDialogOpen] =
     useState(false);
-
-  const dicebear = createAvatar(glass, {
-    seed: workspace.name,
-  }).toDataUri();
 
   const handleWorkspaceCreateClick = () => {
     setIsDropdownOpen(false);
@@ -72,16 +71,20 @@ export function WorkspaceSwitcher({ workspace }: { workspace: any }) {
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage
-                  src={workspace.image || dicebear}
-                  alt={workspace.name}
+                  src={currentWorkspace.logo}
+                  alt={currentWorkspace.name}
                 />
                 <AvatarFallback className="rounded-lg">
-                  {workspace.name.slice(0, 2).toUpperCase()}
+                  {currentWorkspace.name.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{workspace.name}</span>
-                <span className="truncate text-xs">{workspace.plan}</span>
+                <span className="truncate font-medium">
+                  {currentWorkspace.name}
+                </span>
+                <span className="truncate text-xs">
+                  {currentWorkspace.plan}
+                </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -92,21 +95,26 @@ export function WorkspaceSwitcher({ workspace }: { workspace: any }) {
             align="start"
             sideOffset={4}
           >
-            <DropdownMenuItem onClick={handleWorkspaceCreateClick}>
-              <Plus />
-              New workspace
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={handleWorkspaceInviteClick}>
                 <UserPlus />
                 Invite members
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleWorkspaceSettingsClick}>
-                <Briefcase />
+                <Settings />
                 Workspace settings
               </DropdownMenuItem>
             </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={handleWorkspaceCreateClick}>
+              <PlusCircle />
+              New workspace
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Shuffle />
+              Switch workspace
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Trash2 />

@@ -12,8 +12,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@dicebear/core": "9.2.4",
-    "@dicebear/collection": "9.2.4",
     "@flowza/api": "workspace:*",
     "@flowza/auth": "workspace:*",
     "@flowza/db": "workspace:*",

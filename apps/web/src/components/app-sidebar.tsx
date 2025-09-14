@@ -4,33 +4,26 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "@flowza/ui/components/sidebar";
-import { WorkspaceSwitcher } from "./workspace-switcher";
-import { UserAccount } from "./user-account";
+import { WorkspaceDropdown } from "./workspace-dropdown";
+import { getCurrentWorkspace } from "../dal/workspace";
+import { UserDropdown } from "./user-dropdown";
+import { getCurrentUser } from "../dal/user";
 import { Navigation } from "./navigation";
 
 export function AppSidebar() {
-  const workspace = {
-    name: "Analog",
-    image: "https://github.com/analogdotnow.png",
-    plan: "Free",
-  };
-
-  const user = {
-    name: "Sandipan Biswas",
-    image: "https://github.com/sandibi13.png",
-    email: "sandipanb680@gmail.com",
-  };
+  const currentWorkspace = getCurrentWorkspace();
+  const currentUser = getCurrentUser();
 
   return (
     <Sidebar variant="inset">
       <SidebarHeader>
-        <WorkspaceSwitcher workspace={workspace} />
+        <WorkspaceDropdown currentWorkspace={currentWorkspace} />
       </SidebarHeader>
       <SidebarContent>
         <Navigation />
       </SidebarContent>
       <SidebarFooter>
-        <UserAccount user={user} />
+        <UserDropdown currentUser={currentUser} />
       </SidebarFooter>
     </Sidebar>
   );
