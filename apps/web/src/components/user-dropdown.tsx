@@ -112,6 +112,7 @@ export function UserDropdown({ currentUser }: { currentUser: any }) {
         <UserProfileDialog
           open={isUserProfileDialogOpen}
           onOpenChange={setIsUserProfileDialogOpen}
+          currentUser={currentUser}
         />
         <UserPreferencesDialog
           open={isUserPreferencesDialogOpen}

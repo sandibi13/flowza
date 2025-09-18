@@ -5,23 +5,25 @@ import { Input } from "@flowza/ui/components/input";
 import { authClient } from "@flowza/auth/client";
 import { Loader } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export function SigninForm() {
   const [loading, setLoading] = useState(false);
 
   const signInWithGoogle = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/home",
-      fetchOptions: {
-        onRequest: () => {
-          setLoading(true);
-        },
-        onResponse: () => {
-          setLoading(false);
-        },
-      },
-    });
+    try {
+      setLoading(true);
+      await authClient.signIn.social({
+        provider: "google",
+        newUserCallbackURL: "/onboarding",
+        callbackURL: "/home",
+      });
+      toast.success("Signed in successfully.");
+    } catch {
+      toast.error("Failed to sign in. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

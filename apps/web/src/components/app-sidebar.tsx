@@ -10,9 +10,9 @@ import { UserDropdown } from "./user-dropdown";
 import { getCurrentUser } from "../dal/user";
 import { Navigation } from "./navigation";
 
-export function AppSidebar() {
-  const currentWorkspace = getCurrentWorkspace();
-  const currentUser = getCurrentUser();
+export async function AppSidebar() {
+  const currentWorkspace = await getCurrentWorkspace();
+  const currentUser = await getCurrentUser();
 
   return (
     <Sidebar variant="inset">

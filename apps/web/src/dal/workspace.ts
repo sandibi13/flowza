@@ -1,37 +1,21 @@
-export const getCurrentWorkspace = () => {
-  return {
-    name: "Analog",
-    slug: "analog",
-    logo: "https://github.com/analogdotnow.png",
-    plan: "Free",
-  };
-};
+"use server";
 
-export const getAllWorkspaces = () => {
-  return [
-    {
-      name: "Analog",
-      slug: "analog",
-      logo: "https://github.com/analogdotnow.png",
-      plan: "Free",
-    },
-    {
-      name: "BetaWorks",
-      slug: "betaworks",
-      logo: "https://github.com/betaworks.png",
-      plan: "Pro",
-    },
-    {
-      name: "GammaTech",
-      slug: "gammatech",
-      logo: "https://github.com/gammatech.png",
-      plan: "Enterprise",
-    },
-    {
-      name: "DeltaDev",
-      slug: "deltadev",
-      logo: "https://github.com/deltadev.png",
-      plan: "Free",
-    },
-  ];
+import { organization } from "@flowza/db/schema/root";
+import { redirect } from "next/navigation";
+import { db } from "@flowza/db/lib/db";
+import { getSession } from "./session";
+import { eq } from "drizzle-orm";
+
+export const getCurrentWorkspace = async () => {
+  const session = await getSession();
+
+  if (!session.session.activeOrganizationId) {
+    redirect("/onboarding");
+  }
+
+  const currentWorkspace = await db.query.organization.findFirst({
+    where: eq(organization.id, session.session.activeOrganizationId),
+  });
+
+  return currentWorkspace;
 };

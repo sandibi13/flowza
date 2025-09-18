@@ -133,6 +133,7 @@ export function WorkspaceDropdown({
         <WorkspaceSettingsDialog
           open={isWorkspaceSettingsDialogOpen}
           onOpenChange={setIsWorkspaceSettingsDialogOpen}
+          currentWorkspace={currentWorkspace}
         />
       </SidebarMenuItem>
     </SidebarMenu>

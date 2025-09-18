@@ -1,42 +1,21 @@
-export const getCurrentUser = () => {
-  return {
-    name: "Jane Doe",
-    username: "janedoe",
-    displayUsername: "Jane",
-    image: "https://github.com/omsi6.png",
-    email: "jane.doe@example.com",
-  };
-};
+"use server";
 
-export const getAllUsers = () => {
-  return [
-    {
-      name: "Jane Doe",
-      username: "janedoe",
-      displayUsername: "Jane",
-      image: "https://github.com/omsi6.png",
-      email: "jane.doe@example.com",
-    },
-    {
-      name: "John Smith",
-      username: "johnsmith",
-      displayUsername: "John",
-      image: "https://github.com/octocat.png",
-      email: "john.smith@example.com",
-    },
-    {
-      name: "Alice Johnson",
-      username: "alicej",
-      displayUsername: "Alice",
-      image: "https://github.com/alicej.png",
-      email: "alice.johnson@example.com",
-    },
-    {
-      name: "Bob Lee",
-      username: "boblee",
-      displayUsername: "Bob",
-      image: "https://github.com/boblee.png",
-      email: "bob.lee@example.com",
-    },
-  ];
+import { user } from "@flowza/db/schema/root";
+import { redirect } from "next/navigation";
+import { db } from "@flowza/db/lib/db";
+import { getSession } from "./session";
+import { eq } from "drizzle-orm";
+
+export const getCurrentUser = async () => {
+  const session = await getSession();
+
+  if (!session.user.username || !session.user.displayUsername) {
+    redirect("/onboarding");
+  }
+
+  const currentUser = await db.query.user.findFirst({
+    where: eq(user.id, session.user.id),
+  });
+
+  return currentUser;
 };
