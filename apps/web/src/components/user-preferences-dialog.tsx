@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@flowza/ui/components/dialog";
+import { Button } from "@flowza/ui/components/button";
 
 interface UserPreferencesDialogProps {
   open: boolean;
@@ -25,8 +26,13 @@ export function UserPreferencesDialog({
           <DialogTitle>Preferences</DialogTitle>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose>Close</DialogClose>
+          <DialogClose asChild>
+            <Button type="button" variant="outline">
+              Close
+            </Button>
+          </DialogClose>
         </DialogFooter>
+        <Button type="submit">Update</Button>
       </DialogContent>
     </Dialog>
   );
