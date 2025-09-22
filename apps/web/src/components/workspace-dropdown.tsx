@@ -9,19 +9,19 @@ import {
   DropdownMenuTrigger,
 } from "@flowza/ui/components/dropdown-menu";
 import {
+  ChevronsUpDownIcon,
+  PlusCircleIcon,
+  SettingsIcon,
+  ShuffleIcon,
+  Trash2Icon,
+  UserPlusIcon,
+} from "lucide-react";
+import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from "@flowza/ui/components/sidebar";
-import {
-  ChevronsUpDown,
-  PlusCircle,
-  Settings,
-  Shuffle,
-  Trash2,
-  UserPlus,
-} from "lucide-react";
 import {
   Avatar,
   AvatarFallback,
@@ -86,7 +86,7 @@ export function WorkspaceDropdown({
                   {currentWorkspace.plan}
                 </span>
               </div>
-              <ChevronsUpDown className="ml-auto size-4" />
+              <ChevronsUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -97,27 +97,27 @@ export function WorkspaceDropdown({
           >
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={handleWorkspaceInviteClick}>
-                <UserPlus />
+                <UserPlusIcon />
                 Invite members
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleWorkspaceSettingsClick}>
-                <Settings />
+                <SettingsIcon />
                 Workspace settings
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleWorkspaceCreateClick}>
-              <PlusCircle />
+              <PlusCircleIcon />
               New workspace
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Shuffle />
+              <ShuffleIcon />
               Switch workspace
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Trash2 />
+              <Trash2Icon />
               Trash
             </DropdownMenuItem>
           </DropdownMenuContent>

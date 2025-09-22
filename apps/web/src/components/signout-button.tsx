@@ -3,7 +3,7 @@
 import { DropdownMenuItem } from "@flowza/ui/components/dropdown-menu";
 import { authClient } from "@flowza/auth/client";
 import { useRouter } from "next/navigation";
-import { LogOut } from "lucide-react";
+import { LogOutIcon } from "lucide-react";
 import { toast } from "sonner";
 
 export function SignoutButton() {
@@ -21,7 +21,7 @@ export function SignoutButton() {
 
   return (
     <DropdownMenuItem onClick={signOut}>
-      <LogOut />
+      <LogOutIcon />
       Signout
     </DropdownMenuItem>
   );

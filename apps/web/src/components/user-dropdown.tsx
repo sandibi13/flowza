@@ -9,18 +9,18 @@ import {
   DropdownMenuTrigger,
 } from "@flowza/ui/components/dropdown-menu";
 import {
+  ChevronsUpDownIcon,
+  CircleArrowUpIcon,
+  SlidersHorizontalIcon,
+  UserIcon,
+  UsersIcon,
+} from "lucide-react";
+import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from "@flowza/ui/components/sidebar";
-import {
-  ChevronsUpDown,
-  CircleArrowUp,
-  SlidersHorizontal,
-  User,
-  Users,
-} from "lucide-react";
 import {
   Avatar,
   AvatarFallback,
@@ -75,7 +75,7 @@ export function UserDropdown({ currentUser }: { currentUser: any }) {
                 <span className="truncate font-medium">{currentUser.name}</span>
                 <span className="truncate text-xs">{currentUser.email}</span>
               </div>
-              <ChevronsUpDown className="ml-auto size-4" />
+              <ChevronsUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -86,23 +86,23 @@ export function UserDropdown({ currentUser }: { currentUser: any }) {
           >
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={handleUserProfileClick}>
-                <User />
+                <UserIcon />
                 Profile
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleUserPreferencesClick}>
-                <SlidersHorizontal />
+                <SlidersHorizontalIcon />
                 Preferences
               </DropdownMenuItem>
               <ThemeToggle />
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Users />
+              <UsersIcon />
               Switch Account
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleBillingUpgradeClick}>
-              <CircleArrowUp />
+              <CircleArrowUpIcon />
               Upgrade plan
             </DropdownMenuItem>
             <DropdownMenuSeparator />

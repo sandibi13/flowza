@@ -13,7 +13,7 @@ import { Label } from "@flowza/ui/components/label";
 import { Input } from "@flowza/ui/components/input";
 import { authClient } from "@flowza/auth/client";
 import { useForm } from "react-hook-form";
-import { Loader } from "lucide-react";
+import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -100,7 +100,7 @@ export function UserProfileDialog({
             </DialogClose>
             <Button type="submit" disabled={loading}>
               {loading ? (
-                <Loader className="size-4 animate-spin" />
+                <LoaderIcon className="size-4 animate-spin" />
               ) : (
                 <span>Update</span>
               )}

@@ -6,7 +6,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@flowza/ui/components/sidebar";
-import { Box, Globe, Home, Search } from "lucide-react";
+import { BoxIcon, GlobeIcon, HomeIcon, SearchIcon } from "lucide-react";
 import { CommandPalette } from "./command-palette";
 import { useState } from "react";
 import Link from "next/link";
@@ -15,9 +15,9 @@ export function Navigation() {
   const [isCommandDialogOpen, setIsCommandDialogOpen] = useState(false);
 
   const navLinks = [
-    { href: "/home", name: "Home", icon: Home },
-    { href: "/integrations", name: "Integrations", icon: Box },
-    { href: "/templates", name: "Templates", icon: Globe },
+    { href: "/home", name: "Home", icon: HomeIcon },
+    { href: "/integrations", name: "Integrations", icon: BoxIcon },
+    { href: "/templates", name: "Templates", icon: GlobeIcon },
   ];
 
   return (
@@ -36,7 +36,7 @@ export function Navigation() {
           ))}
           <SidebarMenuItem>
             <SidebarMenuButton onClick={() => setIsCommandDialogOpen(true)}>
-              <Search />
+              <SearchIcon />
               Search
             </SidebarMenuButton>
           </SidebarMenuItem>

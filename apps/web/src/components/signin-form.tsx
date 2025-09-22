@@ -3,7 +3,7 @@
 import { Button } from "@flowza/ui/components/button";
 import { Input } from "@flowza/ui/components/input";
 import { authClient } from "@flowza/auth/client";
-import { Loader } from "lucide-react";
+import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -48,7 +48,7 @@ export function SigninForm() {
         disabled={loading}
       >
         {loading ? (
-          <Loader className="size-4 animate-spin" />
+          <LoaderIcon className="size-4 animate-spin" />
         ) : (
           <span>Signin with Google</span>
         )}

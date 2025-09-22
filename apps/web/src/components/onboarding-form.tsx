@@ -1,9 +1,9 @@
 "use client";
 
+import { ChevronLeftIcon, LoaderIcon } from "lucide-react";
 import { Button } from "@flowza/ui/components/button";
 import { Label } from "@flowza/ui/components/label";
 import { Input } from "@flowza/ui/components/input";
-import { ChevronLeft, Loader } from "lucide-react";
 import { authClient } from "@flowza/auth/client";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -66,7 +66,7 @@ export function OnboardingForm() {
     <div>
       {currentStep > 1 && (
         <Button onClick={goBack}>
-          <ChevronLeft className="size-4" />
+          <ChevronLeftIcon className="size-4" />
         </Button>
       )}
 
@@ -122,7 +122,7 @@ export function OnboardingForm() {
             <h1>Step 3</h1>
             <Button type="submit" disabled={loading}>
               {loading ? (
-                <Loader className="size-4 animate-spin" />
+                <LoaderIcon className="size-4 animate-spin" />
               ) : (
                 <span>Continue</span>
               )}
