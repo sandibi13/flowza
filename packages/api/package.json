@@ -23,6 +23,7 @@
     "@trpc/server": "11.4.3",
     "@trpc/tanstack-react-query": "11.4.3",
     "client-only": "catalog:",
+    "nanoid": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "server-only": "catalog:",

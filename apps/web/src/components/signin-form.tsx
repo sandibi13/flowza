@@ -11,19 +11,22 @@ export function SigninForm() {
   const [loading, setLoading] = useState(false);
 
   const signInWithGoogle = async () => {
-    try {
-      setLoading(true);
-      await authClient.signIn.social({
-        provider: "google",
-        newUserCallbackURL: "/onboarding",
-        callbackURL: "/home",
-      });
-      toast.success("Signed in successfully.");
-    } catch {
-      toast.error("Failed to sign in. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    await authClient.signIn.social({
+      provider: "google",
+      newUserCallbackURL: "/onboarding",
+      callbackURL: "/home",
+      fetchOptions: {
+        onRequest: () => {
+          setLoading(true);
+        },
+        onError: () => {
+          toast.error("Failed to sign in. Please try again.");
+        },
+        onResponse: () => {
+          setLoading(false);
+        },
+      },
+    });
   };
 
   return (

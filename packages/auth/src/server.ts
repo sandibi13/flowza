@@ -6,6 +6,7 @@ import { nextCookies } from "better-auth/next-js";
 import { env } from "@flowza/env/server";
 import { betterAuth } from "better-auth";
 import { db } from "@flowza/db/lib/db";
+import { nanoid } from "nanoid";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -19,7 +20,9 @@ export const auth = betterAuth({
   },
   advanced: {
     database: {
-      generateId: false,
+      generateId: () => {
+        return nanoid();
+      },
     },
   },
   plugins: [username(), organization(), nextCookies()],

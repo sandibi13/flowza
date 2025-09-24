@@ -1,7 +1,7 @@
 "use client";
 
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { SidebarProvider } from "@flowza/ui/components/sidebar";
+import { TooltipProvider } from "@flowza/ui/components/tooltip";
 import { TRPCReactProvider } from "@flowza/api/client";
 import * as React from "react";
 
@@ -16,7 +16,7 @@ export function Providers({
       disableTransitionOnChange
     >
       <TRPCReactProvider>
-        <SidebarProvider>{children}</SidebarProvider>
+        <TooltipProvider>{children}</TooltipProvider>
       </TRPCReactProvider>
     </NextThemesProvider>
   );

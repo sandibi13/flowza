@@ -10,13 +10,16 @@ export function SignoutButton() {
   const router = useRouter();
 
   const signOut = async () => {
-    try {
-      await authClient.signOut();
-      toast.success("Signed out successfully.");
-      router.push("/");
-    } catch {
-      toast.error("Failed to sign out. Please try again.");
-    }
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/");
+        },
+        onError: () => {
+          toast.error("Failed to sign out. Please try again.");
+        },
+      },
+    });
   };
 
   return (

@@ -2,6 +2,7 @@ import "../styles/globals.css";
 
 import { Toaster } from "@flowza/ui/components/sonner";
 import { GeistSans as geist } from "geist/font/sans";
+import { Providers } from "../lib/providers";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={geist.className}>
-        {children}
-        <Toaster />
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
