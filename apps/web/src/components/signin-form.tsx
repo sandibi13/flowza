@@ -20,7 +20,7 @@ export function SigninForm() {
           setLoading(true);
         },
         onError: () => {
-          toast.error("Failed to sign in. Please try again.");
+          toast.error("Failed to sign in");
         },
         onResponse: () => {
           setLoading(false);

@@ -16,7 +16,7 @@ export function SignoutButton() {
           router.push("/");
         },
         onError: () => {
-          toast.error("Failed to sign out. Please try again.");
+          toast.error("Failed to sign out");
         },
       },
     });
