@@ -15,7 +15,6 @@ import {
   useSidebar,
 } from "@flowza/ui/components/sidebar";
 import {
-  ChevronDownIcon,
   HelpCircleIcon,
   HomeIcon,
   InboxIcon,
@@ -23,43 +22,23 @@ import {
   PackageOpenIcon,
   PanelLeftIcon,
   PlusIcon,
-  SearchIcon,
-  SettingsIcon,
   ShapesIcon,
-  Trash2Icon,
 } from "lucide-react";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@flowza/ui/components/dropdown-menu";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "@flowza/ui/components/dialog";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@flowza/ui/components/popover";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@flowza/ui/components/avatar";
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@flowza/ui/components/tooltip";
 import {
   Collapsible,
   CollapsibleTrigger,
 } from "@flowza/ui/components/collapsible";
+import { UserWorkspaceDropdown } from "./user-workspace-dropdown";
+import { SettingsDialog } from "./settings-dialog";
+import { TrashPopover } from "./trash-popover";
+import { SearchDialog } from "./search-dialog";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-
-const workspace = {
-  name: "Sandipan's",
-  logo: "https://github.com/sandibi13.png",
-};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
@@ -69,45 +48,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar className="border-r-0" {...props}>
       <SidebarHeader>
         <SidebarMenu className="flex flex-row justify-between">
+          <UserWorkspaceDropdown />
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <Avatar className="size-6">
-                    <AvatarImage src={workspace.logo} />
-                    <AvatarFallback>
-                      {workspace.name.charAt(0).toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <span className="truncate font-medium">{workspace.name}</span>
-                  <ChevronDownIcon className="opacity-50" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="bottom" />
-            </DropdownMenu>
-          </SidebarMenuItem>
-
-          <SidebarMenuItem>
-            <SidebarMenuButton onClick={toggleSidebar}>
+            <SidebarMenuButton
+              onClick={toggleSidebar}
+              tooltip={{
+                children: "Toggle sidebar",
+                hidden: false,
+                side: "bottom",
+              }}
+            >
               <PanelLeftIcon />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-
         <SidebarMenu>
-          <SidebarMenuItem>
-            <Dialog>
-              <DialogTrigger asChild>
-                <SidebarMenuButton>
-                  <SearchIcon />
-                  Search
-                </SidebarMenuButton>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogTitle className="sr-only">Search</DialogTitle>
-              </DialogContent>
-            </Dialog>
-          </SidebarMenuItem>
+          <SearchDialog />
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={pathname === "/home"}>
               <Link href="/home">
@@ -124,44 +80,43 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
       <SidebarContent>
         <Collapsible defaultOpen>
           <SidebarGroup>
             <SidebarGroupLabel asChild>
-              <CollapsibleTrigger>Team</CollapsibleTrigger>
+              <CollapsibleTrigger>Shared</CollapsibleTrigger>
             </SidebarGroupLabel>
-            <SidebarGroupAction>
-              <PlusIcon />
-            </SidebarGroupAction>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <SidebarGroupAction>
+                  <PlusIcon />
+                </SidebarGroupAction>
+              </TooltipTrigger>
+              <TooltipContent side="right">New shared agent</TooltipContent>
+            </Tooltip>
           </SidebarGroup>
         </Collapsible>
-
         <Collapsible defaultOpen>
           <SidebarGroup>
             <SidebarGroupLabel asChild>
               <CollapsibleTrigger>Private</CollapsibleTrigger>
             </SidebarGroupLabel>
-            <SidebarGroupAction>
-              <PlusIcon />
-            </SidebarGroupAction>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <SidebarGroupAction>
+                  <PlusIcon />
+                </SidebarGroupAction>
+              </TooltipTrigger>
+              <TooltipContent side="right">New private agent</TooltipContent>
+            </Tooltip>
           </SidebarGroup>
         </Collapsible>
       </SidebarContent>
+
       <SidebarFooter>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <Dialog>
-              <DialogTrigger asChild>
-                <SidebarMenuButton>
-                  <SettingsIcon />
-                  Settings
-                </SidebarMenuButton>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogTitle className="sr-only">Settings</DialogTitle>
-              </DialogContent>
-            </Dialog>
-          </SidebarMenuItem>
+          <SettingsDialog />
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={pathname === "/templates"}>
               <Link href="/templates">
@@ -170,47 +125,41 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
-          <SidebarMenuItem>
-            <Popover>
-              <PopoverTrigger asChild>
-                <SidebarMenuButton>
-                  <Trash2Icon />
-                  Trash
-                </SidebarMenuButton>
-              </PopoverTrigger>
-              <PopoverContent side="right" />
-            </Popover>
-          </SidebarMenuItem>
+          <TrashPopover />
         </SidebarMenu>
-
         <SidebarMenu className="flex flex-row justify-between">
           <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <Link href="/">
-                <LeafIcon />
-              </Link>
+            <SidebarMenuButton
+              tooltip={{
+                children: "Download desktop app",
+                hidden: false,
+                side: "top",
+              }}
+            >
+              <LeafIcon />
             </SidebarMenuButton>
           </SidebarMenuItem>
-
           <div className="flex flex-row justify-between">
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link
-                  target="_blank"
-                  href="https://github.com/sandibi13/flowza.git"
-                >
-                  <PackageOpenIcon />
-                </Link>
+              <SidebarMenuButton
+                tooltip={{
+                  children: "View changelog",
+                  hidden: false,
+                  side: "top",
+                }}
+              >
+                <PackageOpenIcon />
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link
-                  target="_blank"
-                  href="https://github.com/sandibi13/flowza.git"
-                >
-                  <HelpCircleIcon />
-                </Link>
+              <SidebarMenuButton
+                tooltip={{
+                  children: "Help & support",
+                  hidden: false,
+                  side: "top",
+                }}
+              >
+                <HelpCircleIcon />
               </SidebarMenuButton>
             </SidebarMenuItem>
           </div>

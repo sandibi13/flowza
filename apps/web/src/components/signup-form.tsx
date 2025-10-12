@@ -1,9 +1,9 @@
 "use client";
 
+import { Spinner } from "@flowza/ui/components/spinner";
 import { Button } from "@flowza/ui/components/button";
 import { Input } from "@flowza/ui/components/input";
 import { authClient } from "@flowza/auth/client";
-import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -50,11 +50,7 @@ export function SignupForm() {
         onClick={signUpWithGoogle}
         disabled={loading}
       >
-        {loading ? (
-          <LoaderIcon className="size-4 animate-spin" />
-        ) : (
-          <span>Signup with Google</span>
-        )}
+        {loading ? <Spinner /> : <span>Signup with Google</span>}
       </Button>
     </div>
   );

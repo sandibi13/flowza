@@ -23,6 +23,7 @@
     "./components/sidebar": "./src/components/sidebar.tsx",
     "./components/skeleton": "./src/components/skeleton.tsx",
     "./components/sonner": "./src/components/sonner.tsx",
+    "./components/spinner": "./src/components/spinner.tsx",
     "./components/tooltip": "./src/components/tooltip.tsx",
     "./hooks/use-mobile": "./src/hooks/use-mobile.ts",
     "./lib/utils": "./src/lib/utils.ts",
