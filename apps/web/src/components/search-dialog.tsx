@@ -1,6 +1,12 @@
 "use client";
 
 import {
+  Command,
+  CommandEmpty,
+  CommandInput,
+  CommandList,
+} from "@flowza/ui/components/command";
+import {
   Dialog,
   DialogContent,
   DialogTitle,
@@ -22,8 +28,17 @@ export function SearchDialog() {
             Search
           </SidebarMenuButton>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent
+          className="w-[550px] overflow-hidden p-0"
+          showCloseButton={false}
+        >
           <DialogTitle className="sr-only">Search</DialogTitle>
+          <Command>
+            <CommandInput placeholder="Search agents, templates, or anything..." />
+            <CommandList>
+              <CommandEmpty>No matches found</CommandEmpty>
+            </CommandList>
+          </Command>
         </DialogContent>
       </Dialog>
     </SidebarMenuItem>
