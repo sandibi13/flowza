@@ -32,7 +32,7 @@ export function AuthForm({
           setLoading(true);
         },
         onError: () => {
-          toast.error(`Failed to ${label.toLowerCase} with google`);
+          toast.error(`Failed to ${label.toLowerCase()} with google`);
         },
         onResponse: () => {
           setLoading(false);

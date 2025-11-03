@@ -12,6 +12,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@hookform/resolvers": "5.2.2",
+    "@tanstack/react-query": "catalog:",
     "@flowza/api": "workspace:*",
     "@flowza/auth": "workspace:*",
     "@flowza/db": "workspace:*",

@@ -32,15 +32,15 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@flowza/ui/components/avatar";
+import { Skeleton } from "@flowza/ui/components/skeleton";
+import { authClient } from "@flowza/auth/client";
 import { useState } from "react";
 
 export function SettingsDialog() {
-  const [active, setActive] = useState("profile");
+  const [active, setActive] = useState("preferences");
 
-  const user = {
-    name: "Sandipan Biswas",
-    image: "https://github.com/sandibi13.png",
-  };
+  const { data, isPending } = authClient.useSession();
+  const user = data?.user;
 
   return (
     <SidebarMenuItem>
@@ -66,15 +66,24 @@ export function SettingsDialog() {
                           isActive={active === "profile"}
                           onClick={() => setActive("profile")}
                         >
-                          <Avatar className="size-5">
-                            <AvatarImage src={user.image} />
-                            <AvatarFallback>
-                              {user.name.charAt(0).toUpperCase()}
-                            </AvatarFallback>
-                          </Avatar>
-                          <span className="truncate font-medium whitespace-nowrap">
-                            {user.name}
-                          </span>
+                          {isPending ? (
+                            <>
+                              <Skeleton className="size-5 rounded-full" />
+                              <Skeleton className="h-5 w-40" />
+                            </>
+                          ) : (
+                            <>
+                              <Avatar className="size-5">
+                                <AvatarImage src={user?.image || undefined} />
+                                <AvatarFallback>
+                                  {user?.name.charAt(0).toUpperCase()}
+                                </AvatarFallback>
+                              </Avatar>
+                              <span className="max-w-40 truncate font-medium whitespace-nowrap">
+                                {user?.name}
+                              </span>
+                            </>
+                          )}
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                       <SidebarMenuItem>

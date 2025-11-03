@@ -15,6 +15,13 @@
       "when": 1761319894259,
       "tag": "0001_even_eternals",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762174401403,
+      "tag": "0002_cynical_big_bertha",
+      "breakpoints": true
     }
   ]
 }

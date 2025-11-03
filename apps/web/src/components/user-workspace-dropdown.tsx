@@ -23,6 +23,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@flowza/ui/components/sidebar";
+import { Skeleton } from "@flowza/ui/components/skeleton";
 import { authClient } from "@flowza/auth/client";
 import { ChevronDownIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -45,10 +46,8 @@ export function UserWorkspaceDropdown() {
     setTimeout(() => setAddAccountOpen(true), 100);
   };
 
-  const workspace = {
-    name: "Analog",
-    logo: "https://github.com/analogdotnow.png",
-  };
+  const { data, isPending } = authClient.useActiveOrganization();
+  const workspace = data;
 
   const signOut = async () => {
     await authClient.signOut({
@@ -67,16 +66,25 @@ export function UserWorkspaceDropdown() {
     <SidebarMenuItem>
       <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
         <DropdownMenuTrigger asChild>
-          <SidebarMenuButton className="max-w-44 overflow-hidden">
-            <Avatar className="size-5">
-              <AvatarImage src={workspace.logo} />
-              <AvatarFallback>
-                {workspace.name.charAt(0).toUpperCase()}
-              </AvatarFallback>
-            </Avatar>
-            <span className="truncate font-medium whitespace-nowrap">
-              {workspace.name}
-            </span>
+          <SidebarMenuButton className="overflow-hidden">
+            {isPending ? (
+              <>
+                <Skeleton className="size-5 rounded-full" />
+                <Skeleton className="h-5 w-32" />
+              </>
+            ) : (
+              <>
+                <Avatar className="size-5">
+                  <AvatarImage src={workspace?.logo || undefined} />
+                  <AvatarFallback>
+                    {workspace?.name.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <span className="max-w-32 truncate font-medium whitespace-nowrap">
+                  {workspace?.name}
+                </span>
+              </>
+            )}
             <ChevronDownIcon className="opacity-50" />
           </SidebarMenuButton>
         </DropdownMenuTrigger>
